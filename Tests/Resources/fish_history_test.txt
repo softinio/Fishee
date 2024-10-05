@@ -1,0 +1,7 @@
+- cmd: cd Projects/Fishee/
+  when: 1727545693
+  paths:
+    - Projects/Fishee/
+- cmd: swift package tools-version
+  when: 1727545709
+

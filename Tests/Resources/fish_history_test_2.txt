@@ -1,0 +1,6 @@
+- cmd: gh pr create
+  when: 1727024167
+- cmd: nix flake update
+  when: 1727140536
+- cmd: swift package tools-version
+  when: 1727545709
