@@ -86,7 +86,6 @@ struct Fishee: ParsableCommand {
                 let result = writeFishHistory(
                     to: writePath,
                     history: finalHistory,
-                    historyFileLocation: fishHistoryLocation?.path,
                     backup: backup
                 )
                 if result {

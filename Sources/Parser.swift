@@ -35,25 +35,25 @@ func backupHistory(_ path: String) -> Bool {
     let newFileURL = directory.appendingPathComponent(newFileName).appendingPathExtension(fileExtension)
     
     do {
+        try? fileManager.removeItem(at: newFileURL)
         try fileManager.copyItem(at: fileURL, to: newFileURL)
         print("File duplicated successfully to: \(newFileURL.path)")
         return true
     } catch {
+        print("error making a backup of \(path), got error: \(error)")
         return false
     }
 }
 
 
-func writeFishHistory(to path: String, history: [FishHistoryEntry], historyFileLocation: String?, backup: Bool = true) -> Bool {
+func writeFishHistory(to path: String, history: [FishHistoryEntry], backup: Bool = true) -> Bool {
     var output = ""
     
     if backup {
-        if let backupFile = historyFileLocation {
-            let result = backupHistory(backupFile)
-            if !result {
-                print("Failed to backup \(backupFile) so aborting!")
-                return false
-            }
+        let result = backupHistory(path)
+        if !result {
+            print("Failed to backup \(path) so aborting!")
+            return false
         }
     }
     

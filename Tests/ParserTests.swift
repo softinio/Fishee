@@ -27,7 +27,7 @@ final class ParserTests {
         "myfile.txt"
     )
     let filePathforFileBackupTest = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent(
-        "myfile.txt_copy"
+        "myfile_copy.txt"
     )
     
     deinit {
@@ -51,7 +51,7 @@ final class ParserTests {
         let written = writeFishHistory(
             to: filePathforWriteTest.path,
             history: [historyItem],
-            historyFileLocation: fishHistoryFile
+            backup: false
         )
         #expect(written)
         
@@ -64,6 +64,14 @@ final class ParserTests {
         
         """
         #expect(fileContent == expectedEntry)
+        
+        // confirm backup functionality is working
+        let write_again = writeFishHistory(
+            to: filePathforWriteTest.path,
+            history: [historyItem],
+            backup: true
+        )
+        #expect(write_again)
         #expect(FileManager.default.fileExists(atPath: filePathforFileBackupTest.path))
     }
     
