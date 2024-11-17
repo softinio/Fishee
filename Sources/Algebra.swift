@@ -16,15 +16,18 @@
 
 import Foundation
 	
+/// Data Structure/Schema representing an entry in a fish history file.
 struct FishHistoryEntry: Equatable {
     let cmd: String
     let when: Int
     let paths: [String]
-    
+   
+    /// Converts time to Date object
     func getDate() -> Date {
         Date(timeIntervalSince1970: TimeInterval(when))
     }
-    
+   
+    /// Converts structure back to list of strings as expected in a fish history file.
     func writeEntry() -> [String] {
         var output: [String] = []
         

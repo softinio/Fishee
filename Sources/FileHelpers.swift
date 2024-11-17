@@ -18,6 +18,12 @@
 import Foundation
 
 
+/// Gets the full file path to a given file.
+///
+/// - Parameters
+///     - pathStr: The file path to a file.
+///
+/// - Returns: A Valid file URL or None if invalid.
 func getPath(_ pathStr: String) -> URL? {
     let userHomeDirectory = FileManager.default.homeDirectoryForCurrentUser.path
     var filePath: String = pathStr

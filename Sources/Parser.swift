@@ -18,6 +18,18 @@
 import Foundation
 
 
+/// Make a backup of the fish history.
+///
+/// ```
+///The copied files name will have _copy appended to the filename before the file extension.
+///For example:
+///   if the file was example.txt the copied file will be example_copy.txt
+/// ```
+///
+/// - Parameters
+///     - path: The file path to the fish history file.
+///
+/// - Returns: true if backup copy successful, false if not.
 func backupHistory(_ path: String) -> Bool {
     let fileManager = FileManager.default
         
@@ -46,6 +58,14 @@ func backupHistory(_ path: String) -> Bool {
 }
 
 
+/// Write fish history to file.
+///
+/// - Parameters
+///     - path: The file path to the fish history file.
+///     - history: History list to write to file.
+///     - backup: Should the current history file be backed up first boolean.
+///
+/// - Returns: true if writing to file copy successful, false if not.
 func writeFishHistory(to path: String, history: [FishHistoryEntry], backup: Bool = true) -> Bool {
     var output = ""
     
@@ -75,6 +95,12 @@ func writeFishHistory(to path: String, history: [FishHistoryEntry], backup: Bool
     }
 }
 
+/// Parse the fish history file.
+///
+/// - Parameters
+///     - filePath: The file path to the fish history file.
+///
+/// - Returns: List of ``FishHistoryEntry`` entries from history file.
 func parseFishHistory(from filePath: String) -> [FishHistoryEntry]? {
     guard let fileContents = try? String(contentsOfFile: filePath) else {
         print("Failed to open file.")
@@ -113,6 +139,14 @@ func parseFishHistory(from filePath: String) -> [FishHistoryEntry]? {
     return result.entries
 }
 
+/// Merge two given ``FishHistoryEntry`` lists into one list.
+///
+/// - Parameters
+///     - left: The file path to the first fish history file.
+///     - right: The file path to the second fish history file.
+///     - removeDuplicates: if true, remove any duplicates found after merging the two lists.
+///
+/// - Returns: Single list of ``FishHistoryEntry`` entries.
 func mergeFishHistory(_ left: [FishHistoryEntry], _ right: [FishHistoryEntry], removeDuplicates: Bool = false) -> [FishHistoryEntry] {
     
     let merged = left + right
@@ -127,5 +161,4 @@ func mergeFishHistory(_ left: [FishHistoryEntry], _ right: [FishHistoryEntry], r
     } else {
         return merged
     }
-    
 }
