@@ -18,7 +18,7 @@ import Foundation
 import Testing
 @testable import Fishee
 
-@Suite
+@Suite(.serialized)
 final class ParserTests {
     let fishHistoryFile = Bundle.module.path(forResource: "fish_history_test", ofType: "txt")
     let historyItem = FishHistoryEntry(cmd: "cd Projects/Fishee/", when: 1727545693, paths: ["Projects/Fishee/"])

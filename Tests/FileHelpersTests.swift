@@ -19,6 +19,7 @@ import Testing
 @testable import Fishee
 
 
+@Suite(.serialized)
 final class FileHelpersTests {
     let filePath = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("myfile.txt")
     
