@@ -1,3 +1,5 @@
+![Fishee Logo By Caspian Rahmanian](FisheeLogo.jpeg)
+
 # Fishee
 
 Fishee CLI Tool for Fish Shell
