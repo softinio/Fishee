@@ -1,12 +1,14 @@
 ![Fishee Logo By Caspian Rahmanian](FisheeLogo.jpeg)
 
+<sub>Fishee Logo By [Caspian Rahmanian](https://github.com/ducktinio)</sub>
+
 # Fishee
 
 Fishee CLI Tool for Fish Shell
 
 ## About Fishee
 
-So I have been a user of Fish Shell for quite a while now and really enjoy using it. 
+So I have been a user of Fish Shell for quite a while now and really enjoy using it.
 
 So I decided to write this CLI tool for Fish Shell that helps me manage my fish history.
 
@@ -21,7 +23,7 @@ So I decided to write this CLI tool for Fish Shell that helps me manage my fish 
 
 In terminal run:
 
-```
+```bash
 fishee --help
 ```
 
@@ -44,5 +46,5 @@ OPTIONS:
   -b, --backup/--no-backup
                           Backup fish history file given before writing.
                           (default: --backup)
-  -h, --help         
+  -h, --help
 ```
