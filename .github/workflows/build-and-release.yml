@@ -23,11 +23,12 @@ jobs:
           mkdir -p artifacts/macos-${{ matrix.arch }}
           cp .build/release/fishee artifacts/macos-${{ matrix.arch }}/
 
-      - name: Upload macOS artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload macOS artifacts as release assets
+        uses: softprops/action-gh-release@v2
         with:
-          name: fishee-macos-${{ matrix.arch }}-${{ github.ref_name }}
-          path: artifacts/macos-${{ matrix.arch }}
+          files: artifacts/macos-${{ matrix.arch }}/fishee
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-linux:
     runs-on: ubuntu-latest
@@ -44,8 +45,9 @@ jobs:
           mkdir -p artifacts/linux
           cp .build/release/fishee artifacts/linux/
 
-      - name: Upload Linux artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload Linux artifacts as release assets
+        uses: softprops/action-gh-release@v2
         with:
-          name: fishee-linux-${{ github.ref_name }}
-          path: artifacts/linux
+          files: artifacts/linux/fishee
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
