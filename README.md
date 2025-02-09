@@ -1,3 +1,5 @@
+[Tests](https://github.com/softinio/Fishee/actions/workflows/test.yml/badge.svg) | [Release](https://github.com/softinio/Fishee/actions/workflows/build-and-release.yml/badge.svg)
+
 ![Fishee Logo By Caspian Rahmanian](FisheeLogo.jpeg)
 
 <sub>Fishee Logo By [Caspian Rahmanian](https://github.com/ducktinio)</sub>
