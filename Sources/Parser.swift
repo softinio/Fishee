@@ -102,7 +102,7 @@ func writeFishHistory(to path: String, history: [FishHistoryEntry], backup: Bool
 ///
 /// - Returns: List of ``FishHistoryEntry`` entries from history file.
 func parseFishHistory(from filePath: String) -> [FishHistoryEntry]? {
-    guard let fileContents = try? String(contentsOfFile: filePath, encoding: String.Encoding.utf8) else {
+    guard let fileContents = try? String(contentsOfFile: filePath, encoding: .utf8) else {
         print("Failed to open file.")
         return nil
     }
