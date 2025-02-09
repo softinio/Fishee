@@ -23,12 +23,8 @@ final class ParserTests {
     let fishHistoryFile = Bundle.module.path(forResource: "fish_history_test", ofType: "txt")
     let historyItem = FishHistoryEntry(cmd: "cd Projects/Fishee/", when: 1727545693, paths: ["Projects/Fishee/"])
     let historyItem2 = FishHistoryEntry(cmd: "swift package tools-version", when: 1727545709, paths: [])
-    let filePathforWriteTest = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent(
-        "myfile.txt"
-    )
-    let filePathforFileBackupTest = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent(
-        "myfile_copy.txt"
-    )
+    let filePathforWriteTest = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("myfile.txt")
+    let filePathforFileBackupTest = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("myfile_copy.txt")
     
     deinit {
         if FileManager.default.fileExists(atPath: filePathforWriteTest.path) {
