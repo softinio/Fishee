@@ -1,0 +1,86 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [created]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.0'
+
+      - name: Get swift version
+        run: swift --version
+
+      - name: Run tests
+        run: swift test
+
+  build-macos:
+    runs-on: macos-latest
+    if: github.event_name == 'release'
+    strategy:
+      matrix:
+        arch: [x86_64, arm64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.0'
+
+      - name: Get swift version
+        run: swift --version
+
+      - name: Build for macOS
+        run: |
+          swift build -c release --arch ${{ matrix.arch }}
+          mkdir -p artifacts/macos-${{ matrix.arch }}
+          cp .build/apple/Products/Release/fishee artifacts/macos-${{ matrix.arch }}/
+
+      - name: Upload macOS artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fishee-macos-${{ matrix.arch }}-${{ github.ref_name }}
+          path: artifacts/macos-${{ matrix.arch }}
+
+  build-linux:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.0'
+
+      - name: Get swift version
+        run: swift --version
+
+      - name: Build for Linux
+        run: |
+          swift build -c release
+          mkdir -p artifacts/linux
+          cp .build/release/fishee artifacts/linux/
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fishee-linux-${{ github.ref_name }}
+          path: artifacts/linux
