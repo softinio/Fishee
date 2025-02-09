@@ -21,7 +21,7 @@ jobs:
         run: |
           swift build -c release --arch ${{ matrix.arch }}
           mkdir -p artifacts/macos-${{ matrix.arch }}
-          cp .build/apple/Products/Release/fishee artifacts/macos-${{ matrix.arch }}/
+          cp .build/release/fishee artifacts/macos-${{ matrix.arch }}/
 
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
