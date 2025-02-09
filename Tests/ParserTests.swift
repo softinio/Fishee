@@ -26,9 +26,9 @@ final class ParserTests {
     cmd: "cd Projects/Fishee/", when: 1_727_545_693, paths: ["Projects/Fishee/"])
   let historyItem2 = FishHistoryEntry(
     cmd: "swift package tools-version", when: 1_727_545_709, paths: [])
-  let filePathforWriteTest = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(
+  let filePathforWriteTest = FileManager.default.temporaryDirectory.appendingPathComponent(
     "myfile.txt")
-  let filePathforFileBackupTest = FileManager.default.homeDirectoryForCurrentUser
+  let filePathforFileBackupTest = FileManager.default.temporaryDirectory
     .appendingPathComponent("myfile_copy.txt")
 
   deinit {
