@@ -62,6 +62,8 @@ final class ParserTests {
         #expect(fileContent == expectedEntry)
         
         // confirm backup functionality is working
+        #expect(FileManager.default.fileExists(atPath: filePathforWriteTest.path))
+        
         let write_again = writeFishHistory(
             to: filePathforWriteTest.path,
             history: [historyItem],
