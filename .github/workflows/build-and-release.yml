@@ -21,12 +21,12 @@ jobs:
         run: |
           swift build -c release --arch ${{ matrix.arch }}
           mkdir -p artifacts/macos-${{ matrix.arch }}
-          cp .build/release/fishee artifacts/macos-${{ matrix.arch }}/
+          cp .build/release/fishee artifacts/macos-${{ matrix.arch }}/fishee-macos-${{ matrix.arch }}-${{ github.event.release.tag_name }}
 
       - name: Upload macOS artifacts as release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/macos-${{ matrix.arch }}/fishee
+          files: artifacts/macos-${{ matrix.arch }}/fishee-macos-${{ matrix.arch }}-${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -43,11 +43,11 @@ jobs:
         run: |
           swift build -c release
           mkdir -p artifacts/linux
-          cp .build/release/fishee artifacts/linux/
+          cp .build/release/fishee artifacts/linux/fishee-linux-${{ github.event.release.tag_name }}
 
       - name: Upload Linux artifacts as release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/linux/fishee
+          files: artifacts/linux/fishee-linux-${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
